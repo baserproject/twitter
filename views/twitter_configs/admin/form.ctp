@@ -82,7 +82,7 @@
 
 <h2 id="TimelineTag">Twitterタイムライン表示タグ</h2>
 <?php if($formEx->value('TwitterConfig.username')): ?>
-<p><textarea rows="2" cols="90" readonly="readonly" onclick="this.select(0,this.value.length)">&lt;?php $baser->element('twitter_timeline',array('plugin'=>'twitter')) ?&gt;</textarea></p>
+<p><textarea rows="2" cols="90" readonly="readonly" onclick="this.select(0,this.value.length)">&lt;?php $baser->element('twitter_user_timeline',array('plugin'=>'twitter')) ?&gt;</textarea></p>
 <p><small>※ ブログ記事やページ作成画面では「ソース」モードに切り替えてから貼り付けます</small></p>
 <?php else: ?>
 <p class="error">Twitterユーザー名を登録してください。</p>
