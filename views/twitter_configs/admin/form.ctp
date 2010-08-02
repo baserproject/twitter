@@ -27,7 +27,7 @@
 	<h4>ユーザーヘルプ</h4>
 	<p>Twitterプラグインでは次の二つの機能を提供しています。</p>
 	<ul>
-		<li>任意のユーザーのTwitterタイムラインを任意の場所に表示</li>
+		<li>任意のユーザーのTwitterユーザータイムラインを任意の場所に表示</li>
 		<li>ブログ記事編集画面へのTwitter投稿フォームの表示</li>
 	</ul>
 	<h5>Twitterタイムラインを表示するには</h5>
@@ -80,7 +80,7 @@
 </table>
 <div class="align-center"> <?php echo $formEx->end(array('label'=>'更　新','div'=>false,'class'=>'btn-orange button')) ?> </div>
 
-<h2 id="TimelineTag">Twitterタイムライン表示タグ</h2>
+<h2 id="TimelineTag">Twitterユーザータイムライン表示タグ</h2>
 <?php if($formEx->value('TwitterConfig.username')): ?>
 <p><textarea rows="2" cols="90" readonly="readonly" onclick="this.select(0,this.value.length)">&lt;?php $baser->element('twitter_user_timeline',array('plugin'=>'twitter')) ?&gt;</textarea></p>
 <p><small>※ ブログ記事やページ作成画面では「ソース」モードに切り替えてから貼り付けます</small></p>
