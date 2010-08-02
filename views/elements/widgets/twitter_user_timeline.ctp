@@ -48,6 +48,9 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="side-navi">
+<div class="side-navi twitter">
+<?php if(!empty($name) && !empty($use_title)): ?>
+<h2><?php echo $name ?></h2>
+<?php endif ?>
 	<div class="tweet"></div>
 </div>
