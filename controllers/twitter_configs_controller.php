@@ -69,7 +69,6 @@ class TwitterConfigsController extends AppController {
 	function admin_authorize () {
 		$data = $this->TwitterConfig->findExpanded();
 		$redirectUri = Router::url('/twitter/twitter_configs/authorize_callback',true);
-		var_dump($redirectUri);exit();
 		$authorizeUri = $this->Twitter->authorize($data['consumer_key'],
 													$data['consumer_secret'],
 													$redirectUri,
