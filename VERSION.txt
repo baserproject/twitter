@@ -8,5 +8,5 @@ BaserTwitter 1.0.0
 CHG: 変更内容 / BUG: バグフィックス / NEW: 機能追加
 
 
-[2010-08-01] basertwitter-1.0.0
+[2010-08-05] basertwitter-1.0.0
 - NEW: 初期リリース
