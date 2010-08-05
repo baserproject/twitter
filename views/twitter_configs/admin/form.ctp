@@ -33,8 +33,11 @@
 	<h5>Twitterタイムラインを表示するには</h5>
 	<p>Twitterのユーザー名と表示件数を下のフォームに入力します。その後、<?php $baser->link('ウィジェットエリア管理',array('plugin'=>null,'controller'=>'widget_areas','action'=>'index')) ?>より「Twitterユーザータイムライン」を選択します。</p>
 	<h5>ブログ記事の編集画面からTwitterの投稿を行うには</h5>
-	<p>BaserCMSからTwitterへ投稿するには、Twitter公式サイトより「Twitterアプリケーション」としての登録を行い、許可をもらう必要があります。サイドメニューの「Twitterアプリケーション登録」を開き、ヘルプメッセージに従ってください。<br />
-	登録が完了しましたら、下のフォームの「ブログ記事」にチェックを入れて保存してください。</p>
+	<p>BaserCMSからTwitterへ投稿するには、BaserCMSがあなたのTwitterアカウントにアクセスできるように認証を行う必要があります。
+	<br />まず、サイドメニューの「Twitterアプリ認証」をクリックします。
+	Twitterの認証画面が表示されますので、「許可する」をクリックします。その後、この画面に戻ってきますので、
+	下のフォームの「ブログ記事」にチェックを入れて保存すると完了です。ブログの記事編集画面にTwitterへの投稿フォームが表示されます。<br />
+	別のアカウントに対して投稿を行うには、再度、サイドメニューの「Twitterアプリ認証」をクリックします。次の画面でログインしなおして「許可する」ボタンをクリックして下さい。</p>
 </div>
 <p><small><span class="required">*</span> 印の項目は必須です。</small></p>
 <?php echo $formEx->create('TwitterConfig',array('action'=>'form')) ?>

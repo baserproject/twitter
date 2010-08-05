@@ -30,17 +30,17 @@ CREATE TABLE bc__twitter_configs (
 -- テーブルのデータをダンプしています "bc__twitter_configs"
 --
 
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
-('consumer_key',NULL, datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
-('consumer_secret',NULL, datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
+('consumer_key','Ms83i4onvRtIpuiCRCCa7A', datetime('now', 'localtime'), datetime('now', 'localtime'));
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
+('consumer_secret','91r0eu3uMQDQkBPzEPTcPQZqjIZR37QiCuCdFbwE', datetime('now', 'localtime'), datetime('now', 'localtime'));
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
 ('access_token_key',NULL, datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
 ('access_token_secret',NULL, datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
 ('username', NULL, datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
 ('view_num','3', datetime('now', 'localtime'), datetime('now', 'localtime'));
-INSERT INTO bc_site_configs (name, value, created, modified) VALUES
-('tweet_settings','a:1:{i:0;a:7:{s:2:"id";i:1;s:4:"name";s:15:"ブログ記事";s:6:"plugin";s:4:"blog";s:10:"controller";s:10:"blog_posts";s:6:"action";s:10:"admin_edit";s:15:"status_template";s:4:"blog";s:6:"status";s:1:"1";}}', datetime('now', 'localtime'), datetime('now', 'localtime')),
+INSERT INTO bc__twitter_configs (name, value, created, modified) VALUES
+('tweet_settings','a:1:{i:0;a:7:{s:2:"id";i:1;s:4:"name";s:15:"ブログ記事";s:6:"plugin";s:4:"blog";s:10:"controller";s:10:"blog_posts";s:6:"action";s:10:"admin_edit";s:15:"status_template";s:4:"blog";s:6:"status";s:1:"1";}}', datetime('now', 'localtime'), datetime('now', 'localtime'));

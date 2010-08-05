@@ -49,9 +49,7 @@ class TwitterConfigsController extends AppController {
  * @var		string
  * @access 	public
  */
-	var $navis = array('システム設定'=>'/admin/site_configs/form',
-						'プラグイン設定'=>'/admin/plugins/index',
-						'Twitter管理'=>'/admin/twitter/twitter_configs/form');
+	var $navis = array('Twitter管理'=>'/admin/twitter/twitter_configs/form');
 /**
  * beforeFilter
  * @return	void
@@ -69,29 +67,20 @@ class TwitterConfigsController extends AppController {
  * @access	public
  */
 	function admin_authorize () {
-		
-		$this->pageTitle = 'Twitterアプリケーション認証';
-		$this->subMenuElements = array('twitter');
-		if($this->data){
-
-			if($this->TwitterConfig->saveKeyValue($this->data)) {
-				$redirectUri = Router::url('/twitter/twitter_configs/authorize_callback',true);
-				$authorizeUri = $this->Twitter->authorize($this->data['TwitterConfig']['consumer_key'],
-															$this->data['TwitterConfig']['consumer_secret'],
-															$redirectUri,
-															$this->Session);
-				if($authorizeUri){
-					$this->redirect($authorizeUri);
-				} else {
-					$this->Session->setFlash('Twitterへのアクセスに失敗しました。');
-				}
-
-			} else {
-				$this->Session->setFlash('入力エラーが発生しました。');
-			}
-
+		$data = $this->TwitterConfig->findExpanded();
+		$redirectUri = Router::url('/twitter/twitter_configs/authorize_callback',true);
+		var_dump($redirectUri);exit();
+		$authorizeUri = $this->Twitter->authorize($data['consumer_key'],
+													$data['consumer_secret'],
+													$redirectUri,
+													$this->Session);
+		if($authorizeUri){
+			$this->redirect($authorizeUri);
+		} else {
+			$this->Session->setFlash('Twitterへのアクセスに失敗しました。');
 		}
 
+		$this->redirect(array('admin'=>true, 'action'=>'form'));
 	}
 /**
  * Twitterアプリケーション認証コールバック処理
@@ -152,11 +141,12 @@ class TwitterConfigsController extends AppController {
 		if(!$this->data){
 
 			$this->data['TwitterConfig'] = $this->TwitterConfig->findExpanded();
-			$this->data['TwitterConfig']['tweet_settings_array'] = unserialize($this->data['TwitterConfig']['tweet_settings']);
-			foreach($this->data['TwitterConfig']['tweet_settings_array'] as $key => $settings) {
-				$this->data['TwitterConfig']['tweet_setting_'.$key] = $settings['status'];
+			if(!empty($this->data['TwitterConfig']['tweet_settings'])){
+				$this->data['TwitterConfig']['tweet_settings_array'] = unserialize($this->data['TwitterConfig']['tweet_settings']);
+				foreach($this->data['TwitterConfig']['tweet_settings_array'] as $key => $settings) {
+					$this->data['TwitterConfig']['tweet_setting_'.$key] = $settings['status'];
+				}
 			}
-
 		} else {
 			
 			if($this->TwitterConfig->validates()){
