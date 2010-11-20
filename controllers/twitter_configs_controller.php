@@ -51,6 +51,19 @@ class TwitterConfigsController extends AppController {
  */
 	var $navis = array('Twitter管理'=>'/admin/twitter/twitter_configs/form');
 /**
+ * コンストラクタ
+ *
+ * @access	public
+ */
+	function __construct(){
+		// セッションのセキュリティレベルが、medium の場合、session.referer_check が設定されてしまい、
+		// Twitter からのリダイレクトでセッションが引き継げない為、一旦 low に設定する
+		// 但し、ノーマルモードの場合、bootstrapでセッションがスタートされてしまうので、
+		// デバッグモードが前提
+		Configure::write('Security.level', 'low');
+		parent::__construct();
+	}
+/**
  * beforeFilter
  * @return	void
  * @access	public
@@ -58,9 +71,8 @@ class TwitterConfigsController extends AppController {
 	function beforeFilter(){
 		
 		parent::beforeFilter();
-		$this->Session->security = 'low';
 		$this->Auth->allow('authorize_callback');
-		
+
 	}
 /**
  * Twitterアプリケーション認証
@@ -95,14 +107,14 @@ class TwitterConfigsController extends AppController {
 			$this->redirect(array('admin'=>true, 'action'=>'authorize'));
 
 		}elseif(isset($this->params['url']['oauth_verifier'])) {
-			
+
 			$data = $this->TwitterConfig->findExpanded();
 
 			if($this->Twitter->createConsumer($data['consumer_key'], $data['consumer_secret'])){
 				$accessToken = $this->Twitter->getAccessToken($this->Session);
 				if($accessToken){
 					$data['access_token_key'] = $accessToken->key;
-					$data['access_token_secret'] = $accessToken->secret;			
+					$data['access_token_secret'] = $accessToken->secret;
 					if($this->TwitterConfig->saveKeyValue($data)){
 						$result = true;
 					} else {
@@ -114,19 +126,19 @@ class TwitterConfigsController extends AppController {
 			} else {
 				$result = false;
 			}
-			
+
 			if($result){
-				$this->Session->SetFlash('アプリケーションの登録が完了しました。');
+				$this->Session->SetFlash('アプリケーションの登録が完了しました。<br />制作・開発モードをノーマルモードに戻しておいてください。');
 			} else {
 				$this->Session->SetFlash('アプリケーションの登録に失敗しました。');
 			}
-			
+
 			$this->redirect(array('admin'=>true, 'action'=>'form'));
 
 		}
-		
+
 		$this->notFound();
-		
+
 	}
 /**
  * Twitter設定
@@ -134,7 +146,7 @@ class TwitterConfigsController extends AppController {
  * @access	public
  */
 	function admin_form() {
-		
+
 		$this->pageTitle = 'Twitterプラグイン設定';
 		$this->subMenuElements = array('twitter');
 
@@ -148,12 +160,12 @@ class TwitterConfigsController extends AppController {
 				}
 			}
 		} else {
-			
+
 			if($this->TwitterConfig->validates()){
-				
+
 				// テストデータ生成用↓
 				//$tweetSettings = array(array('id'=>1,'name'=>'ブログ記事','plugin'=>'blog','controller'=>'blog_posts','action'=>'edit','status_template'=>'blog','status'=>1));
-				
+
 				$tweetSettings = unserialize($this->data['TwitterConfig']['tweet_settings']);
 				$i = 0;
 				while(isset($this->data['TwitterConfig']['tweet_setting_'.$i])) {
@@ -161,9 +173,9 @@ class TwitterConfigsController extends AppController {
 					unset($this->data['TwitterConfig']['tweet_setting_'.$i]);
 					$i++;
 				}
-				
+
 				$this->data['TwitterConfig']['tweet_settings'] = serialize($tweetSettings);
-				
+
 				if($this->TwitterConfig->saveKeyValue($this->data)) {
 					$message = 'Twitterプラグイン設定を保存しました。';
 					$this->Session->setFlash($message);
@@ -172,11 +184,11 @@ class TwitterConfigsController extends AppController {
 				}else{
 					$this->Session->setFlash('データベース保存時にエラーが発生しました。');
 				}
-				
+
 			} else {
 				$this->Session->setFlash('入力エラーです。内容を修正してください。');
 			}
-			
+
 		}
 
 	}

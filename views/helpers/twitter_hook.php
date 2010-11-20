@@ -41,7 +41,7 @@ class TwitterHookHelper extends AppHelper{
 
 		$TwitterConfig = ClassRegistry::init('Twitter.TwitterConfig');
 		$config = $TwitterConfig->findExpanded();
-		if(empty($config['tweet_settings'])){
+		if(empty($config['tweet_settings']) || empty($config['consumer_secret']) || empty($config['access_token_secret'])){
 			return $out;
 		}
 		$settings = unserialize($config['tweet_settings']);

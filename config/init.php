@@ -22,5 +22,5 @@
 /**
  * データベース初期化
  */
-	$this->Plugin->initDatabase('plugin','twitter');
+	$this->Plugin->initDb('twitter');
 ?>
