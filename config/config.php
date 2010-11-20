@@ -19,12 +19,10 @@
  * @lastmodified	$Date$
  * @license			http://basercms.net/license/index.html
  */
-/**
- * 管理画面初期ページURL
- */
-	$adminLink = '/admin/twitter/twitter_configs/form';
-/**
- * プラグイン名
- */
-	$title = 'ツイッター';
+$title = 'ツイッター';
+$description = 'ブログ記事の更新内容を簡単にTwitterに投稿でき、Webページにタイムラインの表示ができます。';
+$author = 'ryuring';
+$url = 'http://www.e-catchup.jp';
+$adminLink = '/admin/twitter/twitter_configs/form';
+$installMessage = '';
 ?>
