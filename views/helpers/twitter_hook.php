@@ -30,15 +30,18 @@ class TwitterHookHelper extends AppHelper{
  * @var		array
  * @access	public
  */
-	var $registerHooks = array('formExCreate');
+	var $registerHooks = array('afterFormCreate');
 /**
  * formExCreate
  * @param	string	$out
  * @return	string	$out
  * @access	public
  */
-	function formExCreate($out){
-
+	function afterFormCreate($form, $out){
+		
+		if($form->model() == 'Twitter') {
+			return;
+		}
 		$TwitterConfig = ClassRegistry::init('Twitter.TwitterConfig');
 		$config = $TwitterConfig->findExpanded();
 		if(empty($config['tweet_settings']) || empty($config['consumer_secret']) || empty($config['access_token_secret'])){
@@ -51,15 +54,15 @@ class TwitterHookHelper extends AppHelper{
 		}
 
 		$plugin = $controller = $action = '';
-		$View = ClassRegistry::getObject('View');
-		if(empty($View->params['admin'])){
+		
+		if(empty($form->params['admin'])){
 			return $out;
 		}
-		if(!empty($View->params['plugin'])){
-			$plugin = $View->params['plugin'];
+		if(!empty($form->params['plugin'])){
+			$plugin = $form->params['plugin'];
 		}
-		$controller = $View->params['controller'];
-		$action = $View->params['action'];
+		$controller = $form->params['controller'];
+		$action = $form->params['action'];
 
 		$tweet = false;
 		foreach ($settings as $setting) {
@@ -70,6 +73,7 @@ class TwitterHookHelper extends AppHelper{
 		}
 
 		if($tweet) {
+			$View = ClassRegistry::getObject('View');
 			return $View->renderElement('admin/twitter_update', array('plugin' => 'twitter','statusTemplate'=>$setting['status_template'])).$out;
 		}
 		
