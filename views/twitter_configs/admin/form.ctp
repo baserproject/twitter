@@ -71,12 +71,22 @@
 		<td class="col-input">
 			<?php echo $formEx->hidden('TwitterConfig.tweet_settings') ?>
 			<?php if(!$formEx->value('TwitterConfig.consumer_secret') || !$formEx->value('TwitterConfig.access_token_secret')): ?>
-			<div class="error">Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。</div>
-			<?php endif ?>
-			<?php if($formEx->value('TwitterConfig.tweet_settings_array')): ?>
-				<?php foreach($formEx->value('TwitterConfig.tweet_settings_array') as $key => $setting): ?>
-					<?php echo $formEx->checkbox('TwitterConfig.tweet_setting_'.$key, array('label'=>$setting['name'])) ?><br />
-				<?php endforeach ?>
+			<div class="error">
+				Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。
+				<?php if(Configure::read('debug') < 1): ?>
+				<br />この機能を有効にするには、<?php $baser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
+				「制作・開発モード」をデバッグモードに切り替えると、ここに認証リンクが表示されますのでクリックします。
+				<?php endif ?>
+			</div>
+				<?php if(Configure::read('debug') > 0): ?>
+					<br /><?php $baser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
+				<?php endif ?>
+			<?php else: ?>
+				<?php if($formEx->value('TwitterConfig.tweet_settings_array')): ?>
+					<?php foreach($formEx->value('TwitterConfig.tweet_settings_array') as $key => $setting): ?>
+						<?php echo $formEx->checkbox('TwitterConfig.tweet_setting_'.$key, array('label'=>$setting['name'])) ?><br />
+					<?php endforeach ?>
+				<?php endif ?>
 			<?php endif ?>
 		</td>
 	</tr>

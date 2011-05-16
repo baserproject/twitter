@@ -130,11 +130,11 @@ class TwitterBehavior extends ModelBehavior{
  * @access	public
  */
 	function authorize(&$Model, $consumerKey, $consumerSecret, $callbackUri, &$Session){
-		
+
 		$this->callbackUri = $callbackUri;
 		$this->consumerKey = $consumerKey;
 		$this->consumerSecret = $consumerSecret;
-		
+
 		if($this->createConsumer($Model)){
 			$requestToken = $this->getRequestToken($Model);
 			if($requestToken) {
@@ -142,7 +142,7 @@ class TwitterBehavior extends ModelBehavior{
 				return $this->authorizeUri.'?oauth_token='.$requestToken->key;
 			}
 		}
-		
+
 		return false;
 
 	}
@@ -155,7 +155,7 @@ class TwitterBehavior extends ModelBehavior{
 
 		$requestToken = $this->consumer->getRequestToken($this->requestTokenUri, $this->callbackUri);
 		return $requestToken;
-		
+
 	}
 /**
  * アクセストークンを取得する
@@ -167,10 +167,12 @@ class TwitterBehavior extends ModelBehavior{
 
 		$requestToken = $Session->read('request_token');
 		$accessToken = $this->consumer->getAccessToken( $this->accessTokenUri, $requestToken);
-		$this->accessTokenKey = $accessToken->key;
-		$this->accessTokenSecret = $accessToken->secret;
+		if($accessToken) {
+			$this->accessTokenKey = $accessToken->key;
+			$this->accessTokenSecret = $accessToken->secret;
+		}
 		return $accessToken;
-		
+
 	}
 /**
  * Consumer を生成する
@@ -180,7 +182,7 @@ class TwitterBehavior extends ModelBehavior{
  * @return	boolean
  */
 	function createConsumer(&$Model,$consumerKey=null, $consumerSecret=null) {
-		
+
 		if($consumerKey){
 			$this->consumerKey = $consumerKey;
 		}
