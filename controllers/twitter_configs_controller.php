@@ -71,6 +71,7 @@ class TwitterConfigsController extends AppController {
 	function beforeFilter(){
 		
 		parent::beforeFilter();
+		$this->Session->security = 'low';
 		$this->Auth->allow('authorize_callback');
 
 	}
