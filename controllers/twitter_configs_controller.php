@@ -58,6 +58,7 @@ class TwitterConfigsController extends AppController {
 	function beforeFilter(){
 		
 		parent::beforeFilter();
+		$this->Session->security = 'low';
 		$this->Auth->allow('authorize_callback');
 		
 	}
@@ -96,7 +97,7 @@ class TwitterConfigsController extends AppController {
 		}elseif(isset($this->params['url']['oauth_verifier'])) {
 			
 			$data = $this->TwitterConfig->findExpanded();
-			
+
 			if($this->Twitter->createConsumer($data['consumer_key'], $data['consumer_secret'])){
 				$accessToken = $this->Twitter->getAccessToken($this->Session);
 				if($accessToken){
