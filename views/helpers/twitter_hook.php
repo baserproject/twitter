@@ -40,7 +40,7 @@ class TwitterHookHelper extends AppHelper{
 	function afterFormCreate($form, $out){
 		
 		if($form->model() == 'Twitter') {
-			return;
+			return $out;
 		}
 		$TwitterConfig = ClassRegistry::init('Twitter.TwitterConfig');
 		$config = $TwitterConfig->findExpanded();
