@@ -1,7 +1,7 @@
 <?php
-$url = $baser->getUri('/'.$blogContent['BlogContent']['name'].'/archives/'.$formEx->value('BlogPost.no'));
+$url = $baser->getUri('/'.$blogContent['BlogContent']['name'].'/archives/'.$bcForm->value('BlogPost.no'));
 $title = $blogContent['BlogContent']['title'];
-$comment = $formEx->value('BlogPost.name');
+$comment = $bcForm->value('BlogPost.name');
 ?>
 <div id="TwitterStatusSrc" style="display: none">
 	[<?php echo $title ?>] <?php echo $comment ?> <?php echo $url ?>

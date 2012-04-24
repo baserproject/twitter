@@ -42,8 +42,8 @@ class TwitterConfigsController extends AppController {
  * @var     array
  * @access  public
  */
-	var $components = array('Auth','Cookie','AuthConfigure');
-	var $helpers = array('FormEx');
+	var $components = array('Auth','Cookie','BcAuthConfigure');
+	var $helpers = array('BcForm');
 /**
  * ぱんくずナビ
  * @var		string

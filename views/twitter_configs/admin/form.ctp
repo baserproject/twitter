@@ -40,14 +40,14 @@
 	別のアカウントに対して投稿を行うには、再度、サイドメニューの「Twitterアプリ認証」をクリックします。次の画面でログインしなおして「許可する」ボタンをクリックして下さい。</p>
 </div>
 <p><small><span class="required">*</span> 印の項目は必須です。</small></p>
-<?php echo $formEx->create('TwitterConfig',array('action'=>'form')) ?>
+<?php echo $bcForm->create('TwitterConfig',array('action'=>'form')) ?>
 <table cellpadding="0" cellspacing="0" class="admin-row-table-01">
 	<tr>
-		<th class="col-head"><?php echo $formEx->label('TwitterConfig.username', 'Twitterユーザー名') ?></th>
+		<th class="col-head"><?php echo $bcForm->label('TwitterConfig.username', 'Twitterユーザー名') ?></th>
 		<td class="col-input">
-			<?php echo $formEx->text('TwitterConfig.username', array('size'=>35,'maxlength'=>255)) ?>
+			<?php echo $bcForm->text('TwitterConfig.username', array('size'=>35,'maxlength'=>255)) ?>
 			<?php echo $html->image('img_icon_help_admin.gif',array('id'=>'helpUsername','class'=>'help','alt'=>'ヘルプ')) ?>
-			<?php echo $formEx->error('TwitterConfig.username') ?>
+			<?php echo $bcForm->error('TwitterConfig.username') ?>
 			<div id="helptextUsername" class="helptext">
 				<ul>
 					<li>アルファベットのユーザー名を入力します。</li>
@@ -58,19 +58,19 @@
 		</td>
 	</tr>
 	<tr>
-		<th class="col-head"><?php echo $formEx->label('TwitterConfig.view_num', 'タイムライン表示件数') ?></th>
+		<th class="col-head"><?php echo $bcForm->label('TwitterConfig.view_num', 'タイムライン表示件数') ?></th>
 		<td class="col-input">
-			<?php echo $formEx->text('TwitterConfig.view_num', array('size'=>5,'maxlength'=>3)) ?> 件
+			<?php echo $bcForm->text('TwitterConfig.view_num', array('size'=>5,'maxlength'=>3)) ?> 件
 			<?php echo $html->image('img_icon_help_admin.gif',array('id'=>'helpViewNum','class'=>'help','alt'=>'ヘルプ')) ?>
-			<?php echo $formEx->error('TwitterConfig.view_num') ?>
+			<?php echo $bcForm->error('TwitterConfig.view_num') ?>
 			<div id="helptextViewNum" class="helptext">タイムラインに表示する件数を入力します。</div>
 		</td>
 	</tr>
 	<tr>
-		<th class="col-head"><?php echo $formEx->label('TwitterConfig.description', 'Twitter投稿機能') ?></th>
+		<th class="col-head"><?php echo $bcForm->label('TwitterConfig.description', 'Twitter投稿機能') ?></th>
 		<td class="col-input">
-			<?php echo $formEx->hidden('TwitterConfig.tweet_settings') ?>
-			<?php if(!$formEx->value('TwitterConfig.consumer_secret') || !$formEx->value('TwitterConfig.access_token_secret')): ?>
+			<?php echo $bcForm->hidden('TwitterConfig.tweet_settings') ?>
+			<?php if(!$bcForm->value('TwitterConfig.consumer_secret') || !$bcForm->value('TwitterConfig.access_token_secret')): ?>
 			<div class="error">
 				Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。
 				<?php if(Configure::read('debug') < 1): ?>
@@ -82,13 +82,13 @@
 					<br /><?php $baser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
 				<?php endif ?>
 			<?php else: ?>
-				<?php if($formEx->value('TwitterConfig.tweet_settings_array')): ?>
-					<?php foreach($formEx->value('TwitterConfig.tweet_settings_array') as $key => $setting): ?>
-						<?php echo $formEx->checkbox('TwitterConfig.tweet_setting_'.$key, array('label'=>$setting['name'])) ?><br />
+				<?php if($bcForm->value('TwitterConfig.tweet_settings_array')): ?>
+					<?php foreach($bcForm->value('TwitterConfig.tweet_settings_array') as $key => $setting): ?>
+						<?php echo $bcForm->checkbox('TwitterConfig.tweet_setting_'.$key, array('label'=>$setting['name'])) ?><br />
 					<?php endforeach ?>
 				<?php endif ?>
 			<?php endif ?>
 		</td>
 	</tr>
 </table>
-<div class="align-center"> <?php echo $formEx->end(array('label'=>'更　新','div'=>false,'class'=>'btn-orange button')) ?> </div>
+<div class="align-center"> <?php echo $bcForm->end(array('label'=>'更　新','div'=>false,'class'=>'btn-orange button')) ?> </div>
