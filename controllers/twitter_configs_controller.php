@@ -46,10 +46,21 @@ class TwitterConfigsController extends AppController {
 	var $helpers = array('BcForm');
 /**
  * ぱんくずナビ
- * @var		string
- * @access 	public
+ *
+ * @var array
+ * @access public
  */
-	var $navis = array('Twitter管理'=>'/admin/twitter/twitter_configs/form');
+	var $crumbs = array(
+		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
+		array('name' => 'Twitter管理', 'url' => array('controller' => 'twitter_configs', 'action' => 'form'))
+	);
+/**
+ * サブメニューエレメント
+ *
+ * @var array
+ * @access public
+ */
+	var $subMenuElements = array('twitter');
 /**
  * コンストラクタ
  *
@@ -147,9 +158,6 @@ class TwitterConfigsController extends AppController {
  */
 	function admin_form() {
 
-		$this->pageTitle = 'Twitterプラグイン設定';
-		$this->subMenuElements = array('twitter');
-
 		if(!$this->data){
 
 			$this->data['TwitterConfig'] = $this->TwitterConfig->findExpanded();
@@ -190,6 +198,9 @@ class TwitterConfigsController extends AppController {
 			}
 
 		}
+
+		$this->pageTitle = 'Twitterプラグイン設定';
+		$this->help = 'twitter_configs_form';
 
 	}
 

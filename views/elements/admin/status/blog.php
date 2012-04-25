@@ -1,5 +1,5 @@
 <?php
-$url = $baser->getUri('/'.$blogContent['BlogContent']['name'].'/archives/'.$bcForm->value('BlogPost.no'));
+$url = $bcBaser->getUri('/'.$blogContent['BlogContent']['name'].'/archives/'.$bcForm->value('BlogPost.no'));
 $title = $blogContent['BlogContent']['title'];
 $comment = $bcForm->value('BlogPost.name');
 ?>

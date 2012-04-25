@@ -20,33 +20,13 @@
  * @license			http://basercms.net/license/index.html
  */
 ?>
-<h2>
-	<?php $baser->contentsTitle() ?>
-	&nbsp;<?php echo $html->image('img_icon_help_admin.gif',array('id'=>'helpAdmin','class'=>'slide-trigger','alt'=>'ヘルプ')) ?></h2>
-<div class="help-box corner10 display-none" id="helpAdminBody">
-	<h4>ユーザーヘルプ</h4>
-	<p>Twitterプラグインでは次の二つの機能を提供しています。</p>
-	<ul>
-		<li>任意のユーザーのTwitterユーザータイムラインを任意の場所に表示</li>
-		<li>ブログ記事編集画面へのTwitter投稿フォームの表示</li>
-	</ul>
-	<h5>Twitterタイムラインを表示するには</h5>
-	<p>Twitterのユーザー名と表示件数を下のフォームに入力します。その後、<?php $baser->link('ウィジェットエリア管理',array('plugin'=>null,'controller'=>'widget_areas','action'=>'index')) ?>より「Twitterユーザータイムライン」を選択します。</p>
-	<h5>ブログ記事の編集画面からTwitterの投稿を行うには</h5>
-	<p>BaserCMSからTwitterへ投稿するには、BaserCMSがあなたのTwitterアカウントにアクセスできるように認証を行う必要があります。
-	<br />まず、サイドメニューの「Twitterアプリ認証」をクリックします。
-	Twitterの認証画面が表示されますので、「許可する」をクリックします。その後、この画面に戻ってきますので、
-	下のフォームの「ブログ記事」にチェックを入れて保存すると完了です。ブログの記事編集画面にTwitterへの投稿フォームが表示されます。<br />
-	別のアカウントに対して投稿を行うには、再度、サイドメニューの「Twitterアプリ認証」をクリックします。次の画面でログインしなおして「許可する」ボタンをクリックして下さい。</p>
-</div>
-<p><small><span class="required">*</span> 印の項目は必須です。</small></p>
 <?php echo $bcForm->create('TwitterConfig',array('action'=>'form')) ?>
-<table cellpadding="0" cellspacing="0" class="admin-row-table-01">
+<table cellpadding="0" cellspacing="0" class="list-table" id="ListTable">
 	<tr>
 		<th class="col-head"><?php echo $bcForm->label('TwitterConfig.username', 'Twitterユーザー名') ?></th>
 		<td class="col-input">
 			<?php echo $bcForm->text('TwitterConfig.username', array('size'=>35,'maxlength'=>255)) ?>
-			<?php echo $html->image('img_icon_help_admin.gif',array('id'=>'helpUsername','class'=>'help','alt'=>'ヘルプ')) ?>
+			<?php echo $html->image('admin/icn_help.png', array('id' => 'helpUsername', 'class' =>'btn help','alt' => 'ヘルプ')) ?>
 			<?php echo $bcForm->error('TwitterConfig.username') ?>
 			<div id="helptextUsername" class="helptext">
 				<ul>
@@ -61,7 +41,7 @@
 		<th class="col-head"><?php echo $bcForm->label('TwitterConfig.view_num', 'タイムライン表示件数') ?></th>
 		<td class="col-input">
 			<?php echo $bcForm->text('TwitterConfig.view_num', array('size'=>5,'maxlength'=>3)) ?> 件
-			<?php echo $html->image('img_icon_help_admin.gif',array('id'=>'helpViewNum','class'=>'help','alt'=>'ヘルプ')) ?>
+			<?php echo $html->image('admin/icn_help.png', array('id'=>'helpViewNum', 'class'=>'btn help', 'alt'=>'ヘルプ')) ?>
 			<?php echo $bcForm->error('TwitterConfig.view_num') ?>
 			<div id="helptextViewNum" class="helptext">タイムラインに表示する件数を入力します。</div>
 		</td>
@@ -74,12 +54,12 @@
 			<div class="error">
 				Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。
 				<?php if(Configure::read('debug') < 1): ?>
-				<br />この機能を有効にするには、<?php $baser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
+				<br />この機能を有効にするには、<?php $bcBaser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
 				「制作・開発モード」をデバッグモードに切り替えると、ここに認証リンクが表示されますのでクリックします。
 				<?php endif ?>
 			</div>
 				<?php if(Configure::read('debug') > 0): ?>
-					<br /><?php $baser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
+					<br /><?php $bcBaser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<?php if($bcForm->value('TwitterConfig.tweet_settings_array')): ?>
@@ -91,4 +71,7 @@
 		</td>
 	</tr>
 </table>
-<div class="align-center"> <?php echo $bcForm->end(array('label'=>'更　新','div'=>false,'class'=>'btn-orange button')) ?> </div>
+
+<div class="submit">
+	<?php echo $bcForm->end(array('label'=>'更　新','div'=>false,'class'=>'btn-orange button')) ?>
+</div>
