@@ -42,8 +42,14 @@ class TwitterConfigsController extends AppController {
  * @var     array
  * @access  public
  */
-	var $components = array('Auth','Cookie','BcAuthConfigure');
-	var $helpers = array('BcForm');
+	var $components = array('BcAuth','Cookie','BcAuthConfigure');
+/**
+ * ヘルパー
+ * 
+ * @var array
+ * @access public
+ */
+	var $helpers = array(BC_FORM_HELPER);
 /**
  * ぱんくずナビ
  *
@@ -82,7 +88,7 @@ class TwitterConfigsController extends AppController {
 	function beforeFilter(){
 		
 		parent::beforeFilter();
-		$this->Auth->allow('authorize_callback');
+		$this->BcAuth->allow('authorize_callback');
 
 	}
 /**
