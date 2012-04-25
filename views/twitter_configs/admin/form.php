@@ -54,12 +54,12 @@
 			<div class="error">
 				Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。
 				<?php if(Configure::read('debug') < 1): ?>
-				<br />この機能を有効にするには、<?php $baser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
+				<br />この機能を有効にするには、<?php $bcBaser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
 				「制作・開発モード」をデバッグモードに切り替えると、ここに認証リンクが表示されますのでクリックします。
 				<?php endif ?>
 			</div>
 				<?php if(Configure::read('debug') > 0): ?>
-					<br /><?php $baser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
+					<br /><?php $bcBaser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<?php if($bcForm->value('TwitterConfig.tweet_settings_array')): ?>

@@ -21,7 +21,7 @@
  */
 $TwitterConfig = ClassRegistry::init('Twitter.TwitterConfig');
 $config = $TwitterConfig->findExpanded();
-$baser->js('/twitter/js/jquery.tweet',true);
+$bcBaser->js('/twitter/js/jquery.tweet',true);
 ?>
 
 <script type='text/javascript'>
