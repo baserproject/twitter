@@ -23,6 +23,6 @@ $title = 'ツイッター';
 $description = 'ブログ記事の更新内容を簡単にTwitterに投稿でき、Webページにタイムラインの表示ができます。';
 $author = 'ryuring';
 $url = 'http://www.e-catchup.jp';
-$adminLink = '/admin/twitter/twitter_configs/form';
+$adminLink = array('plugin' => 'twitter', 'controller' => 'twitter_configs', 'action' => 'form');
 $installMessage = '';
 ?>
