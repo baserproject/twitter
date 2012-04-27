@@ -20,6 +20,12 @@
  * @license			http://basercms.net/license/index.html
  */
 ?>
+<script type="text/javascript">
+$(window).load(function() {
+	$("#TwitterConfigUsername").focus();
+});
+</script>
+
 <?php echo $bcForm->create('TwitterConfig',array('action'=>'form')) ?>
 <table cellpadding="0" cellspacing="0" class="list-table" id="ListTable">
 	<tr>
