@@ -64,9 +64,17 @@ class TwitterHookHelper extends AppHelper{
 		$controller = $form->params['controller'];
 		$action = $form->params['action'];
 
+		$id = "";
+		if(preg_match('/id=\"([^\"]+)\"/', $out, $matches)) {
+			$id = $matches[1];
+		}
+
 		$tweet = false;
 		foreach ($settings as $setting) {
-			if($plugin == $setting['plugin'] && $controller == $setting['controller'] && $action == $setting['action'] && $setting['status']){
+			// TODO 色々なフォームで使えるように設定値をデータベースに持っている仕様だが、
+			// データベースの更新が 2.0.0 のリリースには間に合わない為、ブログ記事のみの暫定措置
+			$setting['id'] = "BlogPostForm";
+			if($plugin == $setting['plugin'] && $controller == $setting['controller'] && $action == $setting['action'] && $id == $setting['id'] && $setting['status']){
 				$tweet = true;
 				break;
 			}
