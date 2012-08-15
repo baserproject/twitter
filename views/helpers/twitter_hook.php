@@ -37,7 +37,7 @@ class TwitterHookHelper extends AppHelper{
  * @return	string	$out
  * @access	public
  */
-	function afterFormCreate($form, $out){
+	function afterFormCreate($form, $id, $out){
 		
 		if($form->model() == 'Twitter') {
 			return $out;
