@@ -138,7 +138,8 @@ class TwitterBehavior extends ModelBehavior{
 		if($this->createConsumer($Model)){
 			$requestToken = $this->getRequestToken($Model);
 			if($requestToken) {
-				$Session->write('request_token', $requestToken);
+				$data = array('key' => $requestToken->key, 'secret' => $requestToken->secret);
+				$Session->write('request_token', $data);
 				return $this->authorizeUri.'?oauth_token='.$requestToken->key;
 			}
 		}
@@ -165,7 +166,8 @@ class TwitterBehavior extends ModelBehavior{
  */
 	function getAccessToken(&$Model, &$Session){
 
-		$requestToken = $Session->read('request_token');
+		$token = $Session->read('request_token');
+		$requestToken = new OAuthToken($token['key'], $token['secret']);
 		$accessToken = $this->consumer->getAccessToken( $this->accessTokenUri, $requestToken);
 		if($accessToken) {
 			$this->accessTokenKey = $accessToken->key;

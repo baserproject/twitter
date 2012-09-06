@@ -59,14 +59,8 @@ $(window).load(function() {
 			<?php if(!$bcForm->value('TwitterConfig.consumer_secret') || !$bcForm->value('TwitterConfig.access_token_secret')): ?>
 			<div class="error">
 				Twitterアプリケーションとしての登録が完了していないのでこの機能はまだ利用できません。
-				<?php if(Configure::read('debug') < 1): ?>
-				<br />この機能を有効にするには、<?php $bcBaser->link('システム設定',array('plugin'=>null, 'controller'=>'site_configs', 'action'=>'form')) ?>より、
-				「制作・開発モード」をデバッグモードに切り替えると、ここに認証リンクが表示されますのでクリックします。
-				<?php endif ?>
 			</div>
-				<?php if(Configure::read('debug') > 0): ?>
-					<br /><?php $bcBaser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
-				<?php endif ?>
+					<?php $bcBaser->link('≫ Twitterアプリ認証',array('action'=>'authorize')) ?>
 			<?php else: ?>
 				<?php if($bcForm->value('TwitterConfig.tweet_settings_array')): ?>
 					<?php foreach($bcForm->value('TwitterConfig.tweet_settings_array') as $key => $setting): ?>
