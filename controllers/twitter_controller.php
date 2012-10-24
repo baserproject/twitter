@@ -78,7 +78,7 @@ class TwitterController extends AppController {
 		if(!$this->data){
 			$this->notFound();
 		}else{
-			$url = $this->convertTinyurl($this->data['Twitter']['url']);
+			$url = $this->_convertTinyurl($this->data['Twitter']['url']);
 			if($url){
 				$this->set('result', $url);
 			}else{
@@ -94,7 +94,7 @@ class TwitterController extends AppController {
  * @return	string	成功した場合は変換後のURL / 失敗した場合は元のURL
  * @access	public
  */
-	function convertTinyurl($url){
+	function _convertTinyurl($url){
 		$requestUrl = 'http://tinyurl.com/api-create.php?url='.$url;
 		App::import('Core','HttpSocket');
 		$sock = new HttpSocket();
