@@ -58,13 +58,13 @@ class TwitterBehavior extends ModelBehavior{
  * @var		string
  * @access	public
  */
-	var $timelineUri = 'http://twitter.com/statuses/statuses/user_timeline.xml';
+	var $timelineUri = 'http://api.twitter.com/1/statuses/user_timeline.xml';
 /**
  * ステータス更新用 URI
  * @var		string
  * @access	public
  */
-	var $updateUri = 'http://twitter.com/statuses/update.xml';
+	var $updateUri = 'http://api.twitter.com/1/statuses/update.xml';
 /**
  * 認証時コールバック URI
  * @var		string
