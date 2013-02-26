@@ -106,7 +106,7 @@ class TwitterConfigsController extends AppController {
 		if($authorizeUri){
 			$this->redirect($authorizeUri);
 		} else {
-			$this->Session->setFlash('Twitterへのアクセスに失敗しました。');
+			$this->setMessage('Twitterへのアクセスに失敗しました。', true);
 		}
 
 		$this->redirect(array('admin'=>true, 'action'=>'form'));
@@ -192,15 +192,15 @@ class TwitterConfigsController extends AppController {
 
 				if($this->TwitterConfig->saveKeyValue($this->data)) {
 					$message = 'Twitterプラグイン設定を保存しました。';
-					$this->Session->setFlash($message);
+					$this->setMessage($message);
 					$this->TwitterConfig->saveDbLog($message);
 					$this->redirect(array('action'=>'form'));
 				}else{
-					$this->Session->setFlash('データベース保存時にエラーが発生しました。');
+					$this->setMessage('データベース保存時にエラーが発生しました。', true);
 				}
 
 			} else {
-				$this->Session->setFlash('入力エラーです。内容を修正してください。');
+				$this->setMessage('入力エラーです。内容を修正してください。', true);
 			}
 
 		}
