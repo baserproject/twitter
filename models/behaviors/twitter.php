@@ -40,31 +40,31 @@ class TwitterBehavior extends ModelBehavior{
  * @var		string
  * @access	public
  */
-	var $requestTokenUri = 'http://twitter.com/oauth/request_token';
+	var $requestTokenUri = 'https://api.twitter.com/oauth/request_token';
 /**
  * Access Token URI
  * @var		string
  * @access	public
  */
-	var $accessTokenUri = 'http://twitter.com/oauth/access_token';
+	var $accessTokenUri = 'https://api.twitter.com/oauth/access_token';
 /**
  *Authorize URI
  * @var		string
  * @access	public
  */
-	var $authorizeUri = 'http://twitter.com/oauth/authorize';
+	var $authorizeUri = 'https://api.twitter.com/oauth/authorize';
 /**
  * ユーザータイムライン取得用 URI
  * @var		string
  * @access	public
  */
-	var $timelineUri = 'http://api.twitter.com/1/statuses/user_timeline.xml';
+	var $timelineUri = 'http://api.twitter.com/1.1/statuses/user_timeline.xml';
 /**
  * ステータス更新用 URI
  * @var		string
  * @access	public
  */
-	var $updateUri = 'http://api.twitter.com/1/statuses/update.xml';
+	var $updateUri = 'http://api.twitter.com/1.1/statuses/update.xml';
 /**
  * 認証時コールバック URI
  * @var		string
