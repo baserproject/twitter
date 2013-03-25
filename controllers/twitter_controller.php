@@ -52,13 +52,12 @@ class TwitterController extends AppController {
 			if(!empty($this->data['Twitter']['status'])){
 				if($this->Twitter->setupTwitterBehavior()){
 					$result = $this->Twitter->update($this->data['Twitter']['status']);
+					
 					if($result){
-						App::import('Core','Xml');
-						$xml = new Xml($result);
-						$array = Set::reverse($xml);
-						if(!empty($array['Status']['User']['screen_name'])){
-							$result = 'http://twitter.com/'.$array['Status']['User']['screen_name'];
-						}else{
+						$result = json_decode($result);
+						if(isset($result->user->screen_name)) {
+							$result = 'http://twitter.com/'.$result->user->screen_name;
+						} else {
 							$result = false;
 						}
 					}
@@ -66,6 +65,7 @@ class TwitterController extends AppController {
 			}
 			$this->set('result',$result);
 		}
+		Configure::write('debug', 0);
 		$this->render('ajax_result');
 		
 	}
