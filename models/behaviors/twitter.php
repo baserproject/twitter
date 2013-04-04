@@ -40,31 +40,31 @@ class TwitterBehavior extends ModelBehavior{
  * @var		string
  * @access	public
  */
-	var $requestTokenUri = 'http://twitter.com/oauth/request_token';
+	var $requestTokenUri = 'https://api.twitter.com/oauth/request_token';
 /**
  * Access Token URI
  * @var		string
  * @access	public
  */
-	var $accessTokenUri = 'http://twitter.com/oauth/access_token';
+	var $accessTokenUri = 'https://api.twitter.com/oauth/access_token';
 /**
  *Authorize URI
  * @var		string
  * @access	public
  */
-	var $authorizeUri = 'http://twitter.com/oauth/authorize';
+	var $authorizeUri = 'https://api.twitter.com/oauth/authorize';
 /**
  * ユーザータイムライン取得用 URI
  * @var		string
  * @access	public
  */
-	var $timelineUri = 'http://twitter.com/statuses/statuses/user_timeline.xml';
+	var $timelineUri = 'http://api.twitter.com/1.1/statuses/user_timeline.json';
 /**
  * ステータス更新用 URI
  * @var		string
  * @access	public
  */
-	var $updateUri = 'http://twitter.com/statuses/update.xml';
+	var $updateUri = 'http://api.twitter.com/1.1/statuses/update.json';
 /**
  * 認証時コールバック URI
  * @var		string
@@ -101,7 +101,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	array	ビヘイビアの設定値
  * @return	void
  */
-	function setup(&$Model, $config = array()) {
+	function setup($Model, $config = array()) {
 
 		if(!empty($config['consumerKey'])){
 			$this->consumerKey = $config['consumerKey'];
@@ -129,7 +129,7 @@ class TwitterBehavior extends ModelBehavior{
  * @return	void
  * @access	public
  */
-	function authorize(&$Model, $consumerKey, $consumerSecret, $callbackUri, &$Session){
+	function authorize($Model, $consumerKey, $consumerSecret, $callbackUri, $Session){
 
 		$this->callbackUri = $callbackUri;
 		$this->consumerKey = $consumerKey;
@@ -152,7 +152,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	Model			$Model
  * @return	RequestToken	$requestToken
  */
-	function getRequestToken (&$Model) {
+	function getRequestToken ($Model) {
 
 		$requestToken = $this->consumer->getRequestToken($this->requestTokenUri, $this->callbackUri);
 		return $requestToken;
@@ -164,7 +164,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	Session		$Session
  * @return	AccessToken	$accessToken
  */
-	function getAccessToken(&$Model, &$Session){
+	function getAccessToken($Model, $Session){
 
 		$token = $Session->read('request_token');
 		$requestToken = new OAuthToken($token['key'], $token['secret']);
@@ -183,7 +183,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	string	$consumerSecret
  * @return	boolean
  */
-	function createConsumer(&$Model,$consumerKey=null, $consumerSecret=null) {
+	function createConsumer($Model,$consumerKey=null, $consumerSecret=null) {
 
 		if($consumerKey){
 			$this->consumerKey = $consumerKey;
@@ -208,7 +208,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	array	$conditions
  * @return	mixed	タイムラインデータ
  */
-	function timeline(&$Model, $conditions) {
+	function timeline($Model, $conditions) {
 		$options['count'] = $conditions['limit'];
 		return $this->consumer->get( $this->accessTokenKey, $this->accessTokenSecret, $this->timelineUri, $options);
 	}
@@ -218,7 +218,7 @@ class TwitterBehavior extends ModelBehavior{
  * @param	boolean	$status
  * @return	mixed	成功時：XML / 失敗時：エラーメッセージ
  */
-	function update(&$Model, $status) {
+	function update($Model, $status) {
 		if(mb_strlen($status,'UTF-8')>140){
 			return false;
 		}

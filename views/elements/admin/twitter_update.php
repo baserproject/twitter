@@ -11,6 +11,6 @@
 	</div>
 	<?php echo $bcForm->create('Twitter', array('url'=> array('plugin'=>'twitter','controller'=>'twitter', 'action'=>'update'), 'action'=>'update'), false) ?>
 	<?php echo $bcForm->textarea('Twitter.status',array('cols'=>76)) ?>
-	<?php echo $bcForm->end(array('lable'=>'ツイート','div'=>false,'id'=>'TwitterUpdateSubmit'), false) ?>
+	<div class="submit" style="display:inline;"><?php echo $bcForm->end(array('lable'=>'ツイート','div'=>false,'id'=>'TwitterUpdateSubmit', 'class' => 'button'), false) ?></div>
 	<div id="ResultMessage" style="display:none">&nbsp;</div>
 </div>
