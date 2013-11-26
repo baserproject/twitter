@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * ツイッタープラグインインストーラー
+ * Twitter設定モデル
  *
  * PHP versions 4 and 5
  *
@@ -12,7 +12,7 @@
  *
  * @copyright		Copyright 2008 - 2011, Catchup, Inc.
  * @link			http://basercms.net BaserCMS Project
- * @package			uploader.config
+ * @package			twitter.models
  * @since			Baser v 0.1.0
  * @version			$Revision$
  * @modifiedby		$LastChangedBy$
@@ -20,6 +20,8 @@
  * @license			http://basercms.net/license/index.html
  */
 /**
- * データベース初期化
+ * Twitter設定モデル
+ *
+ * @package			twitter.models
  */
-$this->Plugin->initDb('plugin', 'Twitter');
+class TwitterConfig extends BcPluginAppModel{}

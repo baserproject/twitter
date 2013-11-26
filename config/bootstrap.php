@@ -17,5 +17,4 @@
  * @lastmodified	$Date$
  * @license			http://basercms.net/license/index.html
  */
-loadPluginConfig('twitter.twitter');
-?>
+Configure::load('Twitter.twitter');

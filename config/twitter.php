@@ -20,11 +20,9 @@
 /**
  * システムナビ
  */
-	$config['BcApp.adminNavi.twitter'] = array(
-			'name'		=> 'Twitterプラグイン',
-			'contents'	=> array(
-				array('name' => 'Twitterプラグイン設定', 'url' => array('admin' => true, 'plugin' => 'twitter', 'controller' => 'twitter_configs', 'action' => 'form'))
-		)
-	);
-
-?>
+$config['BcApp.adminNavi.twitter'] = array(
+		'name'		=> 'Twitterプラグイン',
+		'contents'	=> array(
+			array('name' => 'Twitterプラグイン設定', 'url' => array('admin' => true, 'plugin' => 'twitter', 'controller' => 'twitter_configs', 'action' => 'form'))
+	)
+);
