@@ -1,7 +1,7 @@
 <?php
 /* SVN FILE: $Id$ */
 /**
- * ツイッタープラグイン設定
+ * Twitter設定モデル
  *
  * PHP versions 4 and 5
  *
@@ -12,17 +12,16 @@
  *
  * @copyright		Copyright 2008 - 2011, Catchup, Inc.
  * @link			http://basercms.net baserCMS Project
- * @package			twitter.config
+ * @package			twitter.models
  * @since			Baser v 0.1.0
  * @version			$Revision$
  * @modifiedby		$LastChangedBy$
  * @lastmodified	$Date$
  * @license			http://basercms.net/license/index.html
  */
-$title = 'ツイッター';
-$description = 'ブログ記事の更新内容を簡単にTwitterに投稿でき、Webページにタイムラインの表示ができます。';
-$author = 'ryuring';
-$url = 'http://www.e-catchup.jp';
-$adminLink = array('admin' => true, 'plugin' => 'twitter', 'controller' => 'twitter_configs', 'action' => 'form');
-$installMessage = '';
-?>
+/**
+ * Twitter設定モデル
+ *
+ * @package			twitter.models
+ */
+class TwitterConfig extends BcPluginAppModel{}
