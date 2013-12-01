@@ -11,7 +11,7 @@
  *								fukuoka, Japan 814-0123
  *
  * @copyright		Copyright 2008 - 2011, Catchup, Inc.
- * @link			http://basercms.net BaserCMS Project
+ * @link			http://basercms.net baserCMS Project
  * @package			twitter.controllers
  * @since			Baser v 0.1.0
  * @version			$Revision$
@@ -145,7 +145,7 @@ class TwitterConfigsController extends BcPluginAppController {
 			}
 
 			if($result){
-				$this->Session->SetFlash('アプリケーションの登録が完了しました。<br />制作・開発モードをノーマルモードに戻しておいてください。');
+				$this->Session->SetFlash('アプリケーションの登録が完了しました。');
 			} else {
 				$this->Session->SetFlash('アプリケーションの登録に失敗しました。');
 			}
