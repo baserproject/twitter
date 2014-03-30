@@ -1,9 +1,9 @@
 <?php
 class TwitterHelperEventListener extends BcHelperEventListener {
 	
-	public $events = array('Blog.Form.afterCreate');
+	public $events = array('Form.afterCreate');
 	
-	public function blogFormAfterCreate (CakeEvent $event) {
+	public function formAfterCreate (CakeEvent $event) {
 		
 		$id = $event->data['id'];
 		$out = $event->data['out'];
@@ -17,7 +17,7 @@ class TwitterHelperEventListener extends BcHelperEventListener {
 		if(empty($config['tweet_settings']) || empty($config['consumer_secret']) || empty($config['access_token_secret'])){
 			return $out;
 		}
-		$settings = unserialize($config['tweet_settings']);
+		$settings = BcUtil::unserialize($config['tweet_settings']);
 
 		if(!$settings) {
 			return $out;

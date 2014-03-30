@@ -68,7 +68,7 @@ class TwitterController extends BcPluginAppController {
 					if($result){
 						$result = json_decode($result);
 						if(isset($result->user->screen_name)) {
-							$result = 'http://twitter.com/'.$result->user->screen_name;
+							$result = 'https://twitter.com/'.$result->user->screen_name;
 						} else {
 							$result = false;
 						}

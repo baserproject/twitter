@@ -168,7 +168,7 @@ class TwitterConfigsController extends BcPluginAppController {
 
 			$this->request->data['TwitterConfig'] = $this->TwitterConfig->findExpanded();
 			if(!empty($this->request->data['TwitterConfig']['tweet_settings'])){
-				$this->request->data['TwitterConfig']['tweet_settings_array'] = unserialize($this->request->data['TwitterConfig']['tweet_settings']);
+				$this->request->data['TwitterConfig']['tweet_settings_array'] = BcUtil::unserialize($this->request->data['TwitterConfig']['tweet_settings']);
 				foreach($this->request->data['TwitterConfig']['tweet_settings_array'] as $key => $settings) {
 					$this->request->data['TwitterConfig']['tweet_setting_'.$key] = $settings['status'];
 				}
@@ -180,7 +180,7 @@ class TwitterConfigsController extends BcPluginAppController {
 				// テストデータ生成用↓
 				//$tweetSettings = array(array('id'=>1,'name'=>'ブログ記事','plugin'=>'blog','controller'=>'blog_posts','action'=>'edit','status_template'=>'blog','status'=>1));
 
-				$tweetSettings = unserialize($this->request->data['TwitterConfig']['tweet_settings']);
+				$tweetSettings = BcUtil::unserialize($this->request->data['TwitterConfig']['tweet_settings']);
 				$i = 0;
 				while(isset($this->request->data['TwitterConfig']['tweet_setting_'.$i])) {
 					$tweetSettings[$i]['status'] = $this->request->data['TwitterConfig']['tweet_setting_'.$i];
@@ -188,7 +188,7 @@ class TwitterConfigsController extends BcPluginAppController {
 					$i++;
 				}
 
-				$this->request->data['TwitterConfig']['tweet_settings'] = serialize($tweetSettings);
+				$this->request->data['TwitterConfig']['tweet_settings'] = BcUtil::serialize($tweetSettings);
 
 				if($this->TwitterConfig->saveKeyValue($this->request->data)) {
 					$message = 'Twitterプラグイン設定を保存しました。';

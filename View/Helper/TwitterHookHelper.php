@@ -47,7 +47,7 @@ class TwitterHookHelper extends AppHelper{
 		if(empty($config['tweet_settings']) || empty($config['consumer_secret']) || empty($config['access_token_secret'])){
 			return $out;
 		}
-		$settings = unserialize($config['tweet_settings']);
+		$settings = BcUtil::unserialize($config['tweet_settings']);
 
 		if(!$settings) {
 			return $out;

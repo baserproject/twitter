@@ -62,7 +62,7 @@ class TwitterBehavior extends ModelBehavior{
  * @var		string
  * @access	public
  */
-	public $apiUri = 'http://api.twitter.com/1.1/';
+	public $apiUri = 'https://api.twitter.com/1.1/';
 
 /**
  * 認証時コールバック URI
