@@ -66,9 +66,9 @@ class TwitterController extends BcPluginAppController {
 					$result = $this->Twitter->api('statuses/update.json', array('status' => $this->request->data['Twitter']['status']));
 					
 					if($result){
-						$result = json_decode($result);
-						if(isset($result->user->screen_name)) {
-							$result = 'https://twitter.com/'.$result->user->screen_name;
+						$result = json_decode($result, true);
+						if(isset($result['user']['screen_name'])) {
+							$result = 'https://twitter.com/'.$result['user']['screen_name'];
 						} else {
 							$result = false;
 						}
@@ -98,6 +98,7 @@ class TwitterController extends BcPluginAppController {
 				$this->set('result', false);
 			}
 		}
+		Configure::write('debug', 0);
 		$this->render('ajax_result');
 	}
 	
@@ -113,8 +114,8 @@ class TwitterController extends BcPluginAppController {
 		App::uses('HttpSocket', 'Network/Http');
 		$sock = new HttpSocket();
 		$tinyurl = $sock->get($requestUrl);
-		if($tinyurl) {
-			return $tinyurl;
+		if($tinyurl->body) {
+			return $tinyurl->body;
 		} else {
 			return $url;
 		}
